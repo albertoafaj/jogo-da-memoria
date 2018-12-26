@@ -1,14 +1,59 @@
-
+body {
+  height: 100%;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+}
+html {
+  height: 100%;
+}
+.container {
+  height: 100%;
+  max-width: 900px;
+}
 .col-xs-12 {
-  height: 21.25%;
+  height: 25%;
+}
+.col-xs-6 {
+  text-align: center;
 }
 
 #titulo {
-  height: 15%;
+  height: 10%;
+  margin-top: 5px;
+  /* font-size: 50%; */
 }
+#titulo1 {
+  height: 60%;
+}
+#titulo2 {
+  height: 40%;
+  padding-bottom: 5px;
+}
+
+h1 {
+  font-size:125%;
+  font-stretch: 150%;
+  /* padding: 1.5%; */
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 100%;
+}
+h4 {
+  font-size: 100%;
+  /* padding: 1.5%; */
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 100%;
+}
+
 .row {
-  height: 480px;
-  background-color: blue; 
+  height: 82.5%;
+  background-color:;
+  background-image: linear-gradient(35deg, #453f67db, #7fb0e6);
+  border-radius: 2%;
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+  margin: auto;
+  padding-top: 5%;
 
 }
 .card {
@@ -24,10 +69,19 @@
 .quadro {
   width: 90%;
   height: 100%;
-  background-color: black;
+  background-color: #48eca1;
   color: white;
   margin: auto;
-  border-radius: 10%;
+  border-radius: 5%;
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+}
+.quadrovirado {
+  width: 90%;
+  height: 100%;
+  background-color: grey;
+  color: grey;
+  margin: auto;
+  border-radius: 5%;
   box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
 }
 .col-xs-12 {
@@ -38,28 +92,11 @@
   padding-left: 0;
   padding-right: 0;
 }
-
-@media (min-height: 510px){
+@media (max-height: 429px) {
+  #titulo {
+    height: 20%;
+  }
   .row {
-    height: 500px;
-}
-@media (min-height: 540px){
-  .row {
-    height: 540px;
-}
-@media (min-height: 590px){
-  .row {
-    height: 590px;
-}
-@media (min-height: 640px){
-  .row {
-    height: 640px;
-}
-@media (min-height: 799px){
-  .row {
-    height: 800px;
-}
-@media (min-height: 1000px){
-  .row {
-    height: 1000px;
+    height: 72.5%;
+  }
 }
