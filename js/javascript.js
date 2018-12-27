@@ -25,14 +25,13 @@ $.when( $.ready ).then(function() {
       && cartasEscolhidas[0] !== cartasEscolhidas[1]) {
         let cartaUm = '[alt="'+cartasEscolhidas[0]+'"]'
         let cartaDois = '[alt="'+cartasEscolhidas[1]+'"]'
-        let cartaUmTag = $(cartaUm).children()
-
         numMovimentos.text("Você Errou!");
-
-        $(cartaUm).children().removeClass('quadro');
-        $(cartaDois).children().removeClass('quadro');
-        $(cartaUm).children().addClass('quadrovirado');
-        $(cartaDois).children().addClass('quadrovirado');
+        setTimeout(function(){
+          $(cartaUm).children().removeClass('quadro');
+          $(cartaDois).children().removeClass('quadro');
+          $(cartaUm).children().addClass('quadrovirado');
+          $(cartaDois).children().addClass('quadrovirado');
+        }, 2000);
         cartasEscolhidas.splice(0,2);
 
 
