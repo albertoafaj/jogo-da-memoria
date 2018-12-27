@@ -83,6 +83,7 @@ h4 {
   margin: auto;
   border-radius: 5%;
   box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+  cursor: pointer;
 }
 .col-xs-12 {
   padding-left: 5%;
