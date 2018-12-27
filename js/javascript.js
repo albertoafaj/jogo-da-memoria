@@ -20,6 +20,25 @@ $.when( $.ready ).then(function() {
         //mensagem de acerto que trocaremos por efeito visual
         numMovimentos.text("Você Acertou!");
         cartasEscolhidas.splice(0,2);
+    } else if (cartasEscolhidas.length === 2
+      //valida se são do mesmo tipo
+      && cartasEscolhidas[0] !== cartasEscolhidas[1]) {
+        let cartaUm = '[alt="'+cartasEscolhidas[0]+'"]'
+        let cartaDois = '[alt="'+cartasEscolhidas[1]+'"]'
+        let cartaUmTag = $(cartaUm).children()
+
+        numMovimentos.text("Você Errou!");
+
+        $(cartaUm).children().removeClass('quadro');
+        $(cartaDois).children().removeClass('quadro');
+        $(cartaUm).children().addClass('quadrovirado');
+        $(cartaDois).children().addClass('quadrovirado');
+        cartasEscolhidas.splice(0,2);
+
+
+        // numMovimentos.$('[alt=cartasEscolhidas[0]]').text('hauahu'+cartasEscolhidas[0]"+);
+
+
     }
   });
 
