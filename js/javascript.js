@@ -70,12 +70,16 @@ $.when( $.ready ).then(function() {
   quadrovirado.click(function() {
     let cartaEscolhida = $(this).parent().attr('alt');
     let idEscolhido = $(this).parent().attr('id');
-    cartasEscolhidas.push(cartaEscolhida);
-    idEscolhidos.push(idEscolhido);
+
+    if ($(this).hasClass('quadro') === false) {
+      cartasEscolhidas.push(cartaEscolhida);
+      idEscolhidos.push(idEscolhido);
+    };
     $(this).removeClass('quadrovirado');
     $(this).addClass('quadro');
     //remover depois
     numMovimentos = numMovimentos.text(idEscolhidos);
+
     if (cartasEscolhidas.length === 2
       //valida se são do mesmo tipo
       && cartasEscolhidas[0] === cartasEscolhidas[1]
