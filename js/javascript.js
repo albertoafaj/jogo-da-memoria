@@ -141,8 +141,56 @@ $.when( $.ready ).then(function() {
     };
   };
 
+  iconesEstrelas = ['<i class="far fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i>',
+  '<i class="fas fa-star acerto"></i> <i class="far fa-star"></i> <i class="far fa-star"></i>',
+  '<i class="fas fa-star acerto"></i> <i class="fas fa-star acerto"></i> <i class="far fa-star"></i>',
+  '<i class="fas fa-star acerto"></i> <i class="fas fa-star acerto"></i> <i class="fas fa-star acerto"></i>',
+];
+
+
+  let numAcertos = 0;
+  let numMoves = 0;
+  let numEstrelas
+
+  function estrelas() {
+    let estrelas = 0;
+    if (numAcertos <= 3) {
+      estrelas = Math.round(numAcertos/(numMoves/2)*1);
+      // estrelas = 1;
+      iconesEstrelasHtml(estrelas);
+
+
+      // numMovimentos = numMovimentos.text(numMoves+' Movimentos');
+    } else if (numAcertos >= 4 && numAcertos <= 6) {
+      estrelas = Math.round(numAcertos/(numMoves/2)*2);
+      iconesEstrelasHtml(estrelas);
+      // numMovimentos = numMovimentos.text(numMoves+' Movimentos');
+    } else if (numAcertos >= 7) {
+      estrelas = Math.round(numAcertos/(numMoves/2)*3);
+      iconesEstrelasHtml(estrelas);
+      // numMovimentos = numMovimentos.text(numMoves+' Movimentos');
+
+    }
+  };
+
+
+  function iconesEstrelasHtml(estrelas) {
+    if (estrelas === 0) {
+      $('#titulo2').children().first().html(iconesEstrelas[0]);
+    } else if (estrelas === 1) {
+      $('#titulo2').children().first().html(iconesEstrelas[1]);
+    } else if (estrelas === 2) {
+      $('#titulo2').children().first().html(iconesEstrelas[2]);
+    } else if (estrelas === 3) {
+      $('#titulo2').children().first().html(iconesEstrelas[3]);
+    };
+  };
+
+
   //vira a carta e execulta as validações
   quadrovirado.click(function() {
+    numMoves++;
+    numMovimentos = numMovimentos.text(numMoves+' Movimentos');
     let cartaEscolhida = $(this).parent().attr('alt');
     let idEscolhido = $(this).parent().attr('id');
     if ($(this).hasClass('quadro') === false) {
@@ -152,13 +200,16 @@ $.when( $.ready ).then(function() {
     $(this).removeClass('quadrovirado');
     $(this).addClass('quadro');
     //remover depois
-    numMovimentos = numMovimentos.text(cartaEscolhida);
+
+    iconesEstrelasHtml();
 
     if (cartasEscolhidas.length === 2
       //valida se são do mesmo tipo
       && cartasEscolhidas[0] === cartasEscolhidas[1]
       && idEscolhidos[0] !== idEscolhidos[1]) {
         msgAcerto();
+        numAcertos++;
+        estrelas();
         limparTabelas();
     } else if (cartasEscolhidas.length === 2
       //valida se são do mesmo tipo

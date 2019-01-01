@@ -36,3 +36,18 @@ for (var i = 0; i < listAlt.length; ) {
 console.log(newListAlt);
 console.log(listAlt[newListAlt[0]]);
 console.log(listFiguras[newListAlt[0]]);
+
+
+// function fimJogo() {
+//   if (numAcertos === 8) {
+//     $('body').children().first().addClass('sumir');
+//     $('body').children().last().removeClass('sumir');
+// };};
+
+// function refreshPage() {
+//   window.location.reload();
+// };
+//
+// $('#refresh').click(function() {
+//   refreshPage();
+// });

@@ -1,3 +1,6 @@
+* {
+  font-size: 98%;
+}
 body {
   height: 100%;
   font-family: 'Lato', sans-serif;
@@ -100,4 +103,45 @@ h4 {
   .row {
     height: 72.5%;
   }
+}
+.acerto {
+  color: yellow;
+}
+.sumir {
+  display: none
+}
+.page2 {
+  text-align: center;
+  height: 100%;
+}
+
+.checkVitoria {
+  font-size: 250%;
+  color: greenyellow;
+  height: 80%;
+}
+.box1 {
+  height: 40%;
+  padding-top: 20%;
+}
+.box2 {
+  height: 10%;
+  font-size: 20px;
+  width: 100%;
+  margin: auto;
+  font-weight: bold;
+}
+.box3 {
+  height: 40%;
+}
+.button {
+  background: #2daa2d;
+  color: white;
+  width: 110px;
+  height: 37px;
+  margin: 4%;
+  border-radius: 10%;
+}
+#refresh {
+  cursor: pointer;
 }
