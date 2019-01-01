@@ -141,6 +141,7 @@ h4 {
   height: 37px;
   margin: 4%;
   border-radius: 10%;
+  cursor: pointer;
 }
 #refresh {
   cursor: pointer;

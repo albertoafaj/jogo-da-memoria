@@ -51,7 +51,7 @@ $.when( $.ready ).then(function() {
   const quadrovirado = $('.quadrovirado');
 
   //numMovimentos só está servindo por enquanto para testas as entradas
-  let numMovimentos = $('#numMovimentos');
+
   let cartasEscolhidas = [];
   let idEscolhidos = [];
 
@@ -147,10 +147,15 @@ $.when( $.ready ).then(function() {
   '<i class="fas fa-star acerto"></i> <i class="fas fa-star acerto"></i> <i class="fas fa-star acerto"></i>',
 ];
 
+  let numMovimentos = $('#numMovimentos');
+  let numMovimentos2 = $('#numMovimentos2');
+  let contEstrelas = $('#contEstrelas');
+
+
 
   let numAcertos = 0;
   let numMoves = 0;
-  let numEstrelas
+  // let numEstrelas
 
   function estrelas() {
     let estrelas = 0;
@@ -158,9 +163,7 @@ $.when( $.ready ).then(function() {
       estrelas = Math.round(numAcertos/(numMoves/2)*1);
       // estrelas = 1;
       iconesEstrelasHtml(estrelas);
-
-
-      // numMovimentos = numMovimentos.text(numMoves+' Movimentos');
+    // numMovimentos = numMovimentos.text(numMoves+' Movimentos');
     } else if (numAcertos >= 4 && numAcertos <= 6) {
       estrelas = Math.round(numAcertos/(numMoves/2)*2);
       iconesEstrelasHtml(estrelas);
@@ -191,6 +194,8 @@ $.when( $.ready ).then(function() {
   quadrovirado.click(function() {
     numMoves++;
     numMovimentos = numMovimentos.text(numMoves+' Movimentos');
+    numMovimentos2 = numMovimentos2.text(numMoves+' Movimentos');
+
     let cartaEscolhida = $(this).parent().attr('alt');
     let idEscolhido = $(this).parent().attr('id');
     if ($(this).hasClass('quadro') === false) {
@@ -209,8 +214,11 @@ $.when( $.ready ).then(function() {
       && idEscolhidos[0] !== idEscolhidos[1]) {
         msgAcerto();
         numAcertos++;
+        // contEstrelas = contEstrelas.text('. E com '+Math.round(numAcertos/(numMoves/2)*3)+' Estrelas');
+        msgEstrelas(); 
         estrelas();
         limparTabelas();
+        fimJogo();
     } else if (cartasEscolhidas.length === 2
       //valida se são do mesmo tipo
       && idEscolhidos[0] !== idEscolhidos[1]
@@ -227,8 +235,35 @@ $.when( $.ready ).then(function() {
     }
   });
 
+  function refreshPage() {
+    window.location.reload();
+  };
 
+  $('#refresh').click(function() {
+    refreshPage();
+  });
 
+  $('.button').click(function() {
+    refreshPage();
+  });
+
+  function fimJogo() {
+    if (numAcertos === 8) {
+      $('body').children().first().addClass('sumir');
+      $('body').children().last().removeClass('sumir');
+      $('body').children().last().addClass('page2');
+  };};
+
+  function msgEstrelas() {
+    numEstrelas = Math.round(numAcertos/(numMoves/2)*3)
+    if (numEstrelas === 0) {
+      contEstrelas = contEstrelas.text('. E com nenhuma estrela.');
+    } else if (numEstrelas === 1) {
+      contEstrelas = contEstrelas.text('. E com '+numEstrelas+' estrela.');
+    } else if (numEstrelas > 1) {
+      contEstrelas = contEstrelas.text('. E com '+numEstrelas+' estrelas.');
+    };
+  };
 
 
 });
