@@ -290,6 +290,7 @@ $.when($.ready).then(function() {
   //Reinicia o jogo ao clicar no botão
   $('.button').click(function() {
     refreshPage();
+    // clearInterval(timer);
   });
 
   //Finaliza o jogo
@@ -312,6 +313,28 @@ $.when($.ready).then(function() {
       contEstrelas = contEstrelas.text('. E com ' + numEstrelas + ' estrelas.');
     };
   };
+
+//Temporizador
+
+var tempo = 0;
+temporizador = $('#temporizador');
+
+function Timer () {
+  var segundos = 0;
+  var timer = setInterval(function() {
+      temporizador = temporizador.text(' ' + segundos + ' (s)' );
+      // console.log(segundos);
+      segundos++;
+      if(numAcertos === 8) {
+          var tempo = segundos;
+          // console.log(tempo);
+          clearInterval(timer);
+      }
+  }, 1000);
+}
+
+var timer = new Timer();
+
 
 
 });
