@@ -1,21 +1,26 @@
 * {
   font-size: 98%;
 }
+
 body {
   height: 100%;
   font-family: 'Lato', sans-serif;
   font-weight: 300;
 }
+
 html {
   height: 100%;
 }
+
 .container {
   height: 100%;
   max-width: 900px;
 }
+
 .col-xs-12 {
   height: 25%;
 }
+
 .col-xs-6 {
   text-align: center;
 }
@@ -23,27 +28,27 @@ html {
 #titulo {
   height: 10%;
   margin-top: 5px;
-  /* font-size: 50%; */
 }
+
 #titulo1 {
   height: 60%;
 }
+
 #titulo2 {
   height: 40%;
   padding-bottom: 5px;
 }
 
 h1 {
-  font-size:125%;
+  font-size: 125%;
   font-stretch: 150%;
-  /* padding: 1.5%; */
   margin-top: auto;
   margin-bottom: auto;
   height: 100%;
 }
+
 h4 {
   font-size: 100%;
-  /* padding: 1.5%; */
   margin-top: auto;
   margin-bottom: auto;
   height: 100%;
@@ -51,24 +56,25 @@ h4 {
 
 .row {
   height: 82.5%;
-  background-color:;
+  background-color: ;
   background-image: linear-gradient(35deg, #453f67db, #7fb0e6);
   border-radius: 2%;
-  box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
   margin: auto;
   padding-top: 5%;
-
 }
+
 .card {
   font-size: 40px;
   margin: auto;
   height: 100%;
-
 }
+
 .linhas {
   text-align: center;
   height: 85%;
 }
+
 .quadro {
   width: 90%;
   height: 100%;
@@ -76,8 +82,9 @@ h4 {
   color: white;
   margin: auto;
   border-radius: 5%;
-  box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
+
 .quadrovirado {
   width: 90%;
   height: 100%;
@@ -85,31 +92,38 @@ h4 {
   color: grey;
   margin: auto;
   border-radius: 5%;
-  box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
+
 .col-xs-12 {
   padding-left: 5%;
   padding-right: 5%;
 }
+
 .col-xs-3 {
   padding-left: 0;
   padding-right: 0;
 }
+
 @media (max-height: 429px) {
   #titulo {
     height: 20%;
   }
+
   .row {
     height: 72.5%;
   }
 }
+
 .acerto {
   color: yellow;
 }
+
 .sumir {
   display: none
 }
+
 .page2 {
   text-align: center;
   height: 100%;
@@ -120,10 +134,12 @@ h4 {
   color: greenyellow;
   height: 80%;
 }
+
 .box1 {
   height: 40%;
   padding-top: 20%;
 }
+
 .box2 {
   height: 10%;
   font-size: 20px;
@@ -131,9 +147,11 @@ h4 {
   margin: auto;
   font-weight: bold;
 }
+
 .box3 {
   height: 40%;
 }
+
 .button {
   background: #2daa2d;
   color: white;
@@ -143,6 +161,7 @@ h4 {
   border-radius: 10%;
   cursor: pointer;
 }
+
 #refresh {
   cursor: pointer;
 }
