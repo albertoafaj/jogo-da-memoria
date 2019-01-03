@@ -41,14 +41,14 @@ $.when($.ready).then(function() {
   };
 
   // Principais paramentros
-  const quadrovirado = $('.quadrovirado');
+  var quadrovirado = $('.quadrovirado');
   let cartasEscolhidas = [];
   let idEscolhidos = [];
   let numMovimentos = $('#numMovimentos');
-  let numMovimentos2 = $('#numMovimentos2');
+  var numMovimentos2 = $('#numMovimentos2');
   let contEstrelas = $('#contEstrelas');
   let numAcertos = 0;
-  let numMoves = 0;
+  var numMoves = 1;
 
   //Limpa as tabelas de cartas escolhidas ao fim de cada jogada
   function limparTabelas() {
@@ -199,22 +199,22 @@ $.when($.ready).then(function() {
 
   function estrelas() {
     let estrelas = 0;
-    if (numAcertos <= 3 && numMoves <= 10) {
+    if (numAcertos <= 3 && numMoves <= 5) {
       estrelas = 1;
       iconesEstrelasHtml(estrelas);
-    } else if (numAcertos >= 4 && numAcertos <= 6 && numMoves <= 18) {
+    } else if (numAcertos >= 4 && numAcertos <= 6 && numMoves <= 9) {
       estrelas = 2;
       iconesEstrelasHtml(estrelas);
-    } else if (numAcertos >= 7 && numMoves <= 24) {
+    } else if (numAcertos >= 7 && numMoves <= 12) {
       estrelas = 3;
       iconesEstrelasHtml(estrelas);
-    } else if (numAcertos >= 7 && numMoves > 24 && numMoves <= 32) {
+    } else if (numAcertos >= 7 && numMoves > 12 && numMoves <= 16) {
       estrelas = 2;
       iconesEstrelasHtml(estrelas);
-    } else if (numAcertos >= 7 && numMoves > 32 && numMoves <= 40) {
+    } else if (numAcertos >= 7 && numMoves > 16 && numMoves <= 20) {
       estrelas = 1;
       iconesEstrelasHtml(estrelas);
-    } else if (numAcertos >= 7 && numMoves > 40) {
+    } else if (numAcertos >= 7 && numMoves > 20) {
       estrelas = 0;
       iconesEstrelasHtml(estrelas);
     }
@@ -233,12 +233,17 @@ $.when($.ready).then(function() {
     };
   };
 
+//conta jogada
+
+  function contaJogadas() {
+    numMovimentos = numMovimentos.text(numMoves + ' Movimentos');
+    numMovimentos2 = numMovimentos2.text(numMoves + ' Movimentos');
+    numMoves++;
+  };
 
   //vira a carta e execulta as validações
   quadrovirado.click(function() {
-    numMoves++;
-    numMovimentos = numMovimentos.text(numMoves + ' Movimentos');
-    numMovimentos2 = numMovimentos2.text(numMoves + ' Movimentos');
+
     let cartaEscolhida = $(this).parent().attr('alt');
     let idEscolhido = $(this).parent().attr('id');
     if ($(this).hasClass('quadro') === false) {
@@ -259,6 +264,7 @@ $.when($.ready).then(function() {
       estrelas();
       limparTabelas();
       fimJogo();
+      contaJogadas();
     } else if (cartasEscolhidas.length === 2
       //valida se são do mesmo tipo
       &&
@@ -266,6 +272,7 @@ $.when($.ready).then(function() {
       cartasEscolhidas[0] !== cartasEscolhidas[1]) {
       msgErro();
       virarCardUp();
+      contaJogadas();
     } else if (cartasEscolhidas.length === 2
       //valida se são do mesmo tipo
       &&
@@ -273,6 +280,7 @@ $.when($.ready).then(function() {
       idEscolhidos[0] === idEscolhidos[1]) {
       msgErro();
       virarCardUp();
+      contaJogadas();
 
     }
   });
@@ -304,20 +312,21 @@ $.when($.ready).then(function() {
 
   //Gera mensagem com numero de estrelas ganhas ao fim do jogo
   function msgEstrelas() {
-    numEstrelas = Math.round(numAcertos / (numMoves / 2) * 3)
+    numEstrelas = Math.round(numAcertos / (numMoves) * 3)
     if (numEstrelas === 0) {
-      contEstrelas = contEstrelas.text('. E com nenhuma estrela.');
+      contEstrelas = contEstrelas.text('. E não ganhou estrelas.');
     } else if (numEstrelas === 1) {
-      contEstrelas = contEstrelas.text('. E com ' + numEstrelas + ' estrela.');
+      contEstrelas = contEstrelas.text('. E ganhou ' + numEstrelas + ' estrela.');
     } else if (numEstrelas > 1) {
-      contEstrelas = contEstrelas.text('. E com ' + numEstrelas + ' estrelas.');
+      contEstrelas = contEstrelas.text('. E ganhou ' + numEstrelas + ' estrelas.');
     };
   };
 
 //Temporizador
 
 var tempo = 0;
-temporizador = $('#temporizador');
+var temporizador = $('#temporizador');
+var tempoFinal = $('#tempoFinal');
 
 function Timer () {
   var segundos = 0;
@@ -327,6 +336,7 @@ function Timer () {
       segundos++;
       if(numAcertos === 8) {
           var tempo = segundos;
+          tempoFinal = tempoFinal.text('. Em '+tempo+' segundos');
           // console.log(tempo);
           clearInterval(timer);
       }
