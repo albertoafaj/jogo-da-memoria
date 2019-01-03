@@ -9,3 +9,10 @@ Este repositório contem um jogo desenvolvido como parte do curso de introduçã
 3. Ao iniciar a partida um cronometro é iniciado para medir o tempo que o jogador leva para acertar todas as jogadas;
 4. Ao decorrer da partida o jogador perde estrelas caso o numero de jogadas erradas aumente;
 5. Ao final é exibido uma tela de congratulações com o tempo, numero de jogadas e o numero de estrelas ganhas pelo jogador.
+
+## Dependências
+
+* jQuery
+* Font Awesom
+* Bootstrap
+* Google Fonts

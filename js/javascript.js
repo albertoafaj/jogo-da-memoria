@@ -1,30 +1,54 @@
+"use strict";
+
 $.when($.ready).then(function() {
 
-  //lista de atributos para os pares das cartas
+  // Principais paramentros
+  var quadrovirado = $('.quadrovirado');
+  var numMovimentos2 = $('#numMovimentos2');
+  let numMovimentos = $('#numMovimentos');
+  let contEstrelas = $('#contEstrelas');
+  let numAcertos = 0;
+  let numErros = 0;
+  let numMoves = 1;
+  let numAleatorio = 0;
+  let teste = 0;
+  let premio = 3;
 
-  const listAlt = ["card01", "card01", "card02", "card02", "card03", "card03",
-    "card04", "card04", "card05", "card05", "card06", "card06", "card07",
-    "card07", "card08", "card08"
-  ];
-
-  //Tabela com o html para cada carta
-
-  const listFiguras = [
-    '<i class="fas fa-fish card"></i>', '<i class="fas fa-fish card"></i>',
-    '<i class="fas fa-spider card"></i>', '<i class="fas fa-spider card"></i>',
-    '<i class="fas fa-cat card"></i>', '<i class="fas fa-cat card"></i>',
-    '<i class="fas fa-dog card"></i>', '<i class="fas fa-dog card"></i>',
-    '<i class="fas fa-crow card"></i>', '<i class="fas fa-crow card"></i>',
-    '<i class="fas fa-dove card"></i>', '<i class="fas fa-dove card"></i>',
-    '<i class="fas fa-frog card"></i>', '<i class="fas fa-frog card"></i>',
-    '<i class="fas fa-horse card"></i>', '<i class="fas fa-horse card"></i>'
-  ];
+  //Tabelas para controle das cartas escolhidas em cada jogada
+  let cartasEscolhidas = [];
+  let idEscolhidos = [];
 
   //Tabela que recebe a ordem aleatória para as cartas ao carregar o jogo
   let newListAlt = [];
+
+  //lista de atributos para os pares das cartas
+
+  const allAlt = ["card01", "card02", "card03",
+    "card04", "card05", "card06",
+    "card07", "card08"
+  ];
+
+  let listAlt = [...allAlt, ...allAlt];
+
+  //Tabela com o html para cada carta
+
+  const linkFiguras = [
+    '<i class="fas fa-fish card"></i>', '<i class="fas fa-spider card"></i>',
+    '<i class="fas fa-cat card"></i>', '<i class="fas fa-dog card"></i>',
+    '<i class="fas fa-crow card"></i>', '<i class="fas fa-dove card"></i>',
+    '<i class="fas fa-frog card"></i>', '<i class="fas fa-horse card"></i>'
+  ];
+
+  let listFiguras = [...linkFiguras, ...linkFiguras];
+
+  //Tabela com o html das estrelas
+  const iconesEstrelas = ['<i class="far fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i>',
+    '<i class="fas fa-star acerto"></i> <i class="far fa-star"></i> <i class="far fa-star"></i>',
+    '<i class="fas fa-star acerto"></i> <i class="fas fa-star acerto"></i> <i class="far fa-star"></i>',
+    '<i class="fas fa-star acerto"></i> <i class="fas fa-star acerto"></i> <i class="fas fa-star acerto"></i>',
+  ];
+
   //Cria lista de ids aleatórios e armazena em newListAlt
-  let numAleatorio = 0;
-  let teste = 0;
   for (var i = 0; i < listAlt.length;) {
     numAleatorio = Math.floor(Math.random() * listAlt.length);
     teste = newListAlt.includes(numAleatorio, );
@@ -39,16 +63,6 @@ $.when($.ready).then(function() {
     $('[id="' + (i + 1) + '"]').attr('alt', listAlt[newListAlt[i]]);
     $('[id="' + (i + 1) + '"]').children().html(listFiguras[newListAlt[i]]);
   };
-
-  // Principais paramentros
-  var quadrovirado = $('.quadrovirado');
-  let cartasEscolhidas = [];
-  let idEscolhidos = [];
-  let numMovimentos = $('#numMovimentos');
-  var numMovimentos2 = $('#numMovimentos2');
-  let contEstrelas = $('#contEstrelas');
-  let numAcertos = 0;
-  var numMoves = 1;
 
   //Limpa as tabelas de cartas escolhidas ao fim de cada jogada
   function limparTabelas() {
@@ -69,12 +83,11 @@ $.when($.ready).then(function() {
       $(cartaDois).children().removeAttr("style");
     }, 500);
     limparTabelas();
-
   };
 
   //Efeito visual para cada acerto
   function msgAcerto() {
-    for (var i = 0; i < idEscolhidos.length; i++) {
+    for (let i = 0; i < idEscolhidos.length; i++) {
       $('[id="' + idEscolhidos[i] + '"]').children().css({
         "position": "relative",
         "background-color": "#9bf4d2"
@@ -132,7 +145,7 @@ $.when($.ready).then(function() {
 
   //Efeito visual para cada erro
   function msgErro() {
-    for (var i = 0; i < idEscolhidos.length; i++) {
+    for (let i = 0; i < idEscolhidos.length; i++) {
       $('[id="' + idEscolhidos[i] + '"]').children().css({
         "position": "relative",
         "background-color": "red"
@@ -188,52 +201,57 @@ $.when($.ready).then(function() {
     };
   };
 
-  //Tabela com o html das estrelas
-  iconesEstrelas = ['<i class="far fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i>',
-    '<i class="fas fa-star acerto"></i> <i class="far fa-star"></i> <i class="far fa-star"></i>',
-    '<i class="fas fa-star acerto"></i> <i class="fas fa-star acerto"></i> <i class="far fa-star"></i>',
-    '<i class="fas fa-star acerto"></i> <i class="fas fa-star acerto"></i> <i class="fas fa-star acerto"></i>',
-  ];
-
   //Define quantas estrelas o jogador ganha
 
   function estrelas() {
-    let estrelas = 3;
-    let numErros = numMoves - numAcertos;
-    let between = function(x,y) {
-      return
-    }
-    if (numErros >=4 && numErros < 9 ) {
-      estrelas = 2;
-      iconesEstrelasHtml(estrelas);
-    } else if (numErros >=9 && numErros < 13 ) {
-      estrelas = 1;
-      iconesEstrelasHtml(estrelas);
-    } else if (numErros >=13) {
-      estrelas = 0;
-      iconesEstrelasHtml(estrelas);
+    if (numErros >= 4 && numErros < 9) {
+      premio = 2;
+      iconesEstrelasHtml(premio);
+    } else if (numErros >= 9) {
+      premio = 1;
+      iconesEstrelasHtml(premio);
     }
   };
 
   //Insere o Html com as gravuras de estrelas
-  function iconesEstrelasHtml(estrelas) {
-    if (estrelas === 0) {
+  function iconesEstrelasHtml(premio) {
+    if (premio === 0) {
       $('#titulo2').children().first().html(iconesEstrelas[0]);
-    } else if (estrelas === 1) {
+    } else if (premio === 1) {
       $('#titulo2').children().first().html(iconesEstrelas[1]);
-    } else if (estrelas === 2) {
+    } else if (premio === 2) {
       $('#titulo2').children().first().html(iconesEstrelas[2]);
-    } else if (estrelas === 3) {
+    } else if (premio === 3) {
       $('#titulo2').children().first().html(iconesEstrelas[3]);
     };
   };
 
-//conta jogada
+  //Gera mensagem com numero de estrelas ganhas ao fim do jogo
+  function msgEstrelas() {
+    if (premio === 0) {
+      contEstrelas = contEstrelas.text('. E não ganhou estrelas.');
+    } else if (premio === 1) {
+      contEstrelas = contEstrelas.text('. E ganhou ' + premio + ' estrela.');
+    } else if (premio > 1) {
+      contEstrelas = contEstrelas.text('. E ganhou ' + premio + ' estrelas.');
+    };
+  };
+
+  //conta jogada
 
   function contaJogadas() {
     numMovimentos = numMovimentos.text(numMoves + ' Movimentos');
     numMovimentos2 = numMovimentos2.text(numMoves + ' Movimentos');
     numMoves++;
+  };
+
+  //Agrupamento de funções que srão execultadas a cada jogada errada
+  function funcErro() {
+    numErros++;
+    estrelas();
+    msgErro();
+    virarCardUp();
+    contaJogadas();
   };
 
   //vira a carta e execulta as validações
@@ -265,18 +283,13 @@ $.when($.ready).then(function() {
       &&
       idEscolhidos[0] !== idEscolhidos[1] &&
       cartasEscolhidas[0] !== cartasEscolhidas[1]) {
-      msgErro();
-      virarCardUp();
-      contaJogadas();
+      funcErro();
     } else if (cartasEscolhidas.length === 2
       //valida se são do mesmo tipo
       &&
       cartasEscolhidas[0] === cartasEscolhidas[1] &&
       idEscolhidos[0] === idEscolhidos[1]) {
-      msgErro();
-      virarCardUp();
-      contaJogadas();
-
+      funcErro();
     }
   });
 
@@ -305,39 +318,25 @@ $.when($.ready).then(function() {
     };
   };
 
-  //Gera mensagem com numero de estrelas ganhas ao fim do jogo
-  function msgEstrelas() {
-    numEstrelas = Math.round(numAcertos / (numMoves) * 3)
-    if (numEstrelas === 0) {
-      contEstrelas = contEstrelas.text('. E não ganhou estrelas.');
-    } else if (numEstrelas === 1) {
-      contEstrelas = contEstrelas.text('. E ganhou ' + numEstrelas + ' estrela.');
-    } else if (numEstrelas > 1) {
-      contEstrelas = contEstrelas.text('. E ganhou ' + numEstrelas + ' estrelas.');
-    };
-  };
+  //Temporizador
 
-//Temporizador
+  var tempo = 0;
+  var temporizador = $('#temporizador');
+  var tempoFinal = $('#tempoFinal');
 
-var tempo = 0;
-var temporizador = $('#temporizador');
-var tempoFinal = $('#tempoFinal');
-
-function Timer () {
-  var segundos = 0;
-  var timer = setInterval(function() {
-      temporizador = temporizador.text(' ' + segundos + ' (s)' );
+  function Timer() {
+    var segundos = 0;
+    var timer = setInterval(function() {
+      temporizador = temporizador.text(' ' + segundos + ' (s)');
       segundos++;
-      if(numAcertos === 8) {
-          var tempo = segundos;
-          tempoFinal = tempoFinal.text('. Em '+tempo+' segundos');
-          clearInterval(timer);
+      if (numAcertos === 8) {
+        var tempo = segundos;
+        tempoFinal = tempoFinal.text('. Em ' + tempo + ' segundos');
+        clearInterval(timer);
       }
-  }, 1000);
-}
+    }, 1000);
+  }
 
-var timer = new Timer();
-
-
+  var timer = new Timer();
 
 });
