@@ -198,23 +198,18 @@ $.when($.ready).then(function() {
   //Define quantas estrelas o jogador ganha
 
   function estrelas() {
-    let estrelas = 0;
-    if (numAcertos <= 3 && numMoves <= 5) {
-      estrelas = 1;
-      iconesEstrelasHtml(estrelas);
-    } else if (numAcertos >= 4 && numAcertos <= 6 && numMoves <= 9) {
+    let estrelas = 3;
+    let numErros = numMoves - numAcertos;
+    let between = function(x,y) {
+      return
+    }
+    if (numErros >=4 && numErros < 9 ) {
       estrelas = 2;
       iconesEstrelasHtml(estrelas);
-    } else if (numAcertos >= 7 && numMoves <= 12) {
-      estrelas = 3;
-      iconesEstrelasHtml(estrelas);
-    } else if (numAcertos >= 7 && numMoves > 12 && numMoves <= 16) {
-      estrelas = 2;
-      iconesEstrelasHtml(estrelas);
-    } else if (numAcertos >= 7 && numMoves > 16 && numMoves <= 20) {
+    } else if (numErros >=9 && numErros < 13 ) {
       estrelas = 1;
       iconesEstrelasHtml(estrelas);
-    } else if (numAcertos >= 7 && numMoves > 20) {
+    } else if (numErros >=13) {
       estrelas = 0;
       iconesEstrelasHtml(estrelas);
     }
@@ -332,12 +327,10 @@ function Timer () {
   var segundos = 0;
   var timer = setInterval(function() {
       temporizador = temporizador.text(' ' + segundos + ' (s)' );
-      // console.log(segundos);
       segundos++;
       if(numAcertos === 8) {
           var tempo = segundos;
           tempoFinal = tempoFinal.text('. Em '+tempo+' segundos');
-          // console.log(tempo);
           clearInterval(timer);
       }
   }, 1000);
